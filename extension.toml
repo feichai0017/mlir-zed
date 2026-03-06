@@ -3,12 +3,16 @@ name = "MLIR"
 version = "0.0.1"
 schema_version = 1
 authors = ["feichai0017 <songguocheng348@gmail.com>"]
-description = "MLIR language support for Zed."
+description = "MLIR and TableGen language support for Zed."
 repository = "https://github.com/feichai0017/mlir-zed"
 
 [grammars.mlir]
 repository = "https://github.com/drom/tree-sitter-mlir"
 commit = "8fc95614ca21eee1f541dca2b9eab87b0179e8d4"
+
+[grammars.tablegen]
+repository = "https://github.com/Flakebi/tree-sitter-tablegen"
+commit = "3e9c4822ab5cdcccf4f8aa9dcd42117f736d51d9"
 
 [language_servers.mlir-lsp]
 name = "MLIR LSP"
@@ -16,3 +20,10 @@ language = "MLIR"
 
 [language_servers.mlir-lsp.language_ids]
 MLIR = "mlir"
+
+[language_servers.tblgen-lsp]
+name = "TableGen LSP"
+language = "TableGen"
+
+[language_servers.tblgen-lsp.language_ids]
+TableGen = "tablegen"
