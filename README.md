@@ -70,25 +70,6 @@ If your `mlir-lsp-server` or `tblgen-lsp-server` is not on `PATH`, configure it 
 }
 ```
 
-## Publishing to the Zed extension registry
-
-The normal path is to publish into the registry, not to move the repository under direct Zed team ownership.
-
-Current registry flow:
-
-1. Push this repository to GitHub.
-2. Fork `https://github.com/zed-industries/extensions`.
-3. Add this repository there as a git submodule under `extensions/mlir`.
-4. Register the extension in the top-level `extensions.toml`.
-5. Run `pnpm sort-extensions`.
-6. Open a PR to `zed-industries/extensions`.
-
-Important details:
-
-- Use an HTTPS submodule URL in the registry PR, even if your personal clone uses SSH.
-- Keep a root `LICENSE` file in this repository, or the registry checks will fail.
-- Getting into the registry is the standard supported route. It does not automatically mean the extension becomes Zed-team-maintained.
-
 ## Versioning notes
 
 This scaffold uses `zed_extension_api = "0.7.0"`, which matches the current latest API docs at the time this repository was generated. If your installed Zed build is older, you may need to pin an earlier `zed_extension_api` version.
