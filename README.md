@@ -12,7 +12,7 @@ For Zed itself, keep the extension metadata simple:
 
 - Recognizes `*.mlir` files as `MLIR`
 - Recognizes `*.td` files as `TableGen`
-- Loads the `tree-sitter-mlir` grammar from `drom/tree-sitter-mlir`
+- Loads the `tree-sitter-mlir` grammar from `artagnon/tree-sitter-mlir`
 - Loads the `tree-sitter-tablegen` grammar from `Flakebi/tree-sitter-tablegen`
 - Starts `mlir-lsp-server` for MLIR buffers
 - Starts `tblgen-lsp-server` for TableGen buffers

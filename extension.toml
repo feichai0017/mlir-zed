@@ -7,8 +7,8 @@ description = "MLIR and TableGen language support for Zed."
 repository = "https://github.com/feichai0017/mlir-zed"
 
 [grammars.mlir]
-repository = "https://github.com/drom/tree-sitter-mlir"
-commit = "8fc95614ca21eee1f541dca2b9eab87b0179e8d4"
+repository = "https://github.com/artagnon/tree-sitter-mlir"
+commit = "1cff1bf79135f8effef87d7cee9d3b26d1970ee9"
 
 [grammars.tablegen]
 repository = "https://github.com/Flakebi/tree-sitter-tablegen"
