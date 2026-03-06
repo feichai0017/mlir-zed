@@ -1,6 +1,6 @@
 id = "mlir"
 name = "MLIR"
-version = "0.0.1"
+version = "0.1.0"
 schema_version = 1
 authors = ["feichai0017 <songguocheng348@gmail.com>"]
 description = "MLIR and TableGen language support for Zed."
