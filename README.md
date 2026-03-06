@@ -1,6 +1,6 @@
 # mlir-zed
 
-`mlir-zed` is a Zed extension repository that provides MLIR and TableGen language and LSP support.
+`mlir-zed` is a Zed extension repository that provides MLIR and TableGen language support for Zed.
 
 For Zed itself, keep the extension metadata simple:
 
@@ -14,23 +14,20 @@ For Zed itself, keep the extension metadata simple:
 - Recognizes `*.td` files as `TableGen`
 - Loads the `tree-sitter-mlir` grammar from `artagnon/tree-sitter-mlir`
 - Loads the `tree-sitter-tablegen` grammar from `Flakebi/tree-sitter-tablegen`
-- Loads bracket matching, indentation, and outline queries for both languages
-- Starts `mlir-lsp-server` for MLIR buffers
-- Starts `tblgen-lsp-server` for TableGen buffers
-- Resolves language servers in this order:
-  1. `lsp.<server>.binary.path` from Zed settings
-  2. binaries on `PATH`
-  3. common LLVM build directories near the current worktree
-  4. common LLVM build directories under `~/github/llvm-project/build` and `~/src/llvm-project/build`
-- Allows the user to override the language server binary path, arguments, environment, initialization options, and workspace settings through Zed LSP settings
+- Provides syntax highlighting, bracket matching, indentation hints, and outline support for both languages
+
+## What this extension does not do
+
+- It does not bundle or launch `mlir-lsp-server`
+- It does not bundle or launch `tblgen-lsp-server`
+- It does not attempt semantic understanding of project-specific dialects
+- It does not manage LLVM or MLIR build artifacts
 
 ## Repository layout
 
 ```text
 .
 ├── extension.toml
-├── Cargo.toml
-├── src/lib.rs
 └── languages/
     ├── mlir/
     │   ├── brackets.scm
@@ -46,64 +43,37 @@ For Zed itself, keep the extension metadata simple:
         └── outline.scm
 ```
 
+There is no Rust runtime in this extension and no bundled language server integration.
+
 ## Local development
 
 Prerequisites:
 
-- Rust installed through `rustup`
-- One of:
-  - `mlir-lsp-server` and `tblgen-lsp-server` on `PATH`
-  - explicit Zed settings for both binaries
-  - an LLVM build tree in one of the extension's known locations
+- Zed
+- This repository checked out locally
 
 Suggested local flow:
 
 1. Open Zed.
 2. Run `zed: install dev extension`.
 3. Select this repository.
-4. Open a `.mlir` or `.td` file and confirm the language mode is `MLIR` or `TableGen`.
+4. Open a `.mlir` file and confirm the language mode is `MLIR`.
+5. Open a `.td` file and confirm the language mode is `TableGen`.
 
-If your servers are not on `PATH`, the extension will also look in:
+## Scope and Design
 
-- `<workspace>/build/bin`
-- `<workspace>/../build/bin`
-- `<workspace>/llvm-project/build/bin`
-- `<workspace>/../llvm-project/build/bin`
-- `<workspace>/third_party/llvm-project/build/bin`
-- `~/github/llvm-project/build/bin`
-- `~/src/llvm-project/build/bin`
+This extension intentionally stays at the syntax layer.
 
-If it finds an LLVM build tree but not the server binary, Zed will show a concrete error with the suggested `ninja -C ... mlir-lsp-server` or `tblgen-lsp-server` command.
+That means it is a good fit when you want:
 
-You can always override discovery in Zed settings:
+- file type detection
+- readable highlighting
+- basic editor structure support
 
-```json
-{
-  "lsp": {
-    "mlir-lsp": {
-      "binary": {
-        "path": "/absolute/path/to/mlir-lsp-server",
-        "arguments": []
-      }
-    },
-    "tblgen-lsp": {
-      "binary": {
-        "path": "/absolute/path/to/tblgen-lsp-server",
-        "arguments": []
-      }
-    }
-  }
-}
-```
+It is intentionally not responsible for:
 
-If you build LLVM/MLIR yourself, the typical command is:
+- dialect-aware completion
+- project-specific semantic analysis
+- locating or installing LSP servers
 
-```bash
-ninja -C /path/to/llvm-project/build mlir-lsp-server tblgen-lsp-server
-```
-
-`tblgen-lsp-server` also expects the relevant TableGen compilation database in your build tree, typically `tablegen_compile_commands.yml`.
-
-## Versioning notes
-
-This scaffold uses `zed_extension_api = "0.7.0"`, which matches the current latest API docs at the time this repository was generated. If your installed Zed build is older, you may need to pin an earlier `zed_extension_api` version.
+This keeps the extension stable for both upstream LLVM users and projects with custom MLIR/TableGen dialects.
