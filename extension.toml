@@ -1,0 +1,18 @@
+id = "mlir"
+name = "MLIR"
+version = "0.0.1"
+schema_version = 1
+authors = ["feichai0017 <songguocheng348@gmail.com>"]
+description = "MLIR language support for Zed."
+repository = "https://github.com/feichai0017/mlir-zed"
+
+[grammars.mlir]
+repository = "https://github.com/drom/tree-sitter-mlir"
+commit = "8fc95614ca21eee1f541dca2b9eab87b0179e8d4"
+
+[language_servers.mlir-lsp]
+name = "MLIR LSP"
+language = "MLIR"
+
+[language_servers.mlir-lsp.language_ids]
+MLIR = "mlir"
