@@ -5,7 +5,7 @@
 For Zed itself, keep the extension metadata simple:
 
 - Repository name: `mlir-zed`
-- Extension id: `mlir`
+- Extension id: `mlir-tablegen`
 - Extension name: `MLIR`
 
 ## What this extension does

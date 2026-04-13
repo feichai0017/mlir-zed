@@ -1,6 +1,6 @@
-id = "mlir"
+id = "mlir-tablegen"
 name = "MLIR"
-version = "0.2.0"
+version = "0.2.1"
 schema_version = 1
 authors = ["feichai0017 <songguocheng348@gmail.com>"]
 description = "MLIR and TableGen syntax highlighting for Zed."
