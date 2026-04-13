@@ -1,13 +1,5 @@
 (comment) @annotation
 
-(type_alias_def
-  "!" @context
-  (bare_id) @name) @item
-
-(attribute_alias_def
-  "#" @context
-  (bare_id) @name) @item
-
 (block
   (block_label
     (caret_id) @name)) @item
