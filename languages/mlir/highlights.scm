@@ -249,7 +249,6 @@
 ] @function.builtin
 
 (generic_operation) @function
-(generic_custom_operation name: (bare_id) @function)
 
 (builtin_type) @type.builtin
 
